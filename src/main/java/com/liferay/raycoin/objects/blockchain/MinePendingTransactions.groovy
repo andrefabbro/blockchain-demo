@@ -127,10 +127,6 @@ class Blockchain {
 			walletBalances.put(t.fromAddress, this.getWalletBalance(t.fromAddress))
 		}
 
-		walletBalances.each { b ->
-			println b.key + " - " + b.value
-		}
-
 		// process all scheduled transactions
 		transactions.each { t ->
 
