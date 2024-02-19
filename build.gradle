@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id 'groovy'
+}
+
+group 'com.liferay.blockchain.example'
+version '0.0.1-SNAPSHOT'
+
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+repositories {
+    mavenCentral()
+	mavenLocal()
+}
+
+dependencies {
+	
+	implementation group: 'org.apache.groovy', name: 'groovy', version: '4.0.11'
+	implementation group: 'org.apache.groovy', name: 'groovy-json', version: '4.0.11'
+	
+	implementation group: "com.liferay", name: "com.liferay.client.extension.util.spring.boot", version: "1.0.9"
+	implementation group: "com.liferay", name: "com.liferay.headless.admin.user.client", version: "4.0.46"
+	implementation group: "com.liferay", name: "com.liferay.headless.delivery.client", version: "4.0.62"
+	implementation group: 'com.liferay.commerce', name: 'com.liferay.headless.commerce.admin.order.client', version: '4.0.31'
+	
+	implementation 'javax.json:javax.json-api:1.1.4'
+	implementation 'org.glassfish:javax.json:1.1.4'
+	
+	implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+	
+	implementation group: 'com.liferay.portal', name: 'release.portal.api', version: '7.4.3.92-ga92'
+	
+	testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.9.2'
+	
+}
+
+test {
+    useJUnitPlatform()
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+
+compileGroovy {
+    options.encoding = 'UTF-8'
+}
+
+task runDemonstrationScript(type: JavaExec) {
+    main = 'com.liferay.poc.blockchain.example.Demonstration'
+	classpath = sourceSets.main.runtimeClasspath
+}
